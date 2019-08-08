@@ -16,10 +16,11 @@ public class DB {
 	public static Connection getConnection() {
 		if (connection == null) {
 			try {
-				Properties properties = loadProperties();
-				String url = properties.getProperty("dburl");
-				connection = DriverManager.getConnection(url, properties);
-			} catch (SQLException e) {
+				Properties props = loadProperties();
+				String url = props.getProperty("dburl");
+				connection = DriverManager.getConnection(url, props);
+			}
+			catch (SQLException e) {
 				throw new DbException(e.getMessage());
 			}
 		}
@@ -38,15 +39,14 @@ public class DB {
 
 	private static Properties loadProperties() {
 		try (FileInputStream fs = new FileInputStream("db.properties")) {
-			Properties p = new Properties();
-			p.load(fs);
-			return p;
-
-		} catch (IOException e) {
+			Properties props = new Properties();
+			props.load(fs);
+			return props;
+		}
+		catch (IOException e) {
 			throw new DbException(e.getMessage());
 		}
 	}
-
 	public static void closeStatment(Statement st) {
 		if (st != null) {
 			try {

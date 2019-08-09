@@ -25,11 +25,20 @@ public class Main {
 		System.out.println("========== FIND ALL ==============");
 		sellers = sellerDao.findAll();
 		sellers.forEach(System.out::println);
-
+		
+		/*
 		System.out.println("========== INSERT INTO ==============");
 		Seller newSeller = new Seller(null, "Tayrone", "tayrone@yahoo.com.br", new Date(), 4000.0, department);
 		sellerDao.insert(newSeller);
 		System.out.println("Inserted! New Seller id = " + newSeller.getId());
+		
+		System.out.println("========== UPDATE ==============");
+		seller = sellerDao.findById(1);
+		seller.setName("Tião carreiro");
+		sellerDao.update(seller);
+		*/
+		System.out.println("========== DELETE ==============");
+		sellerDao.deleteById(10);
 
 	}
 
